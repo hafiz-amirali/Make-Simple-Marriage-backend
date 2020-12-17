@@ -58,6 +58,9 @@ $container['ArticleController'] = function ($container) {
 $container['CandidateController'] = function ($container) {
     return new \App\Controllers\CandidateController;
 };
+$container['ContactUsController'] = function ($container) {
+    return new \App\Controllers\ContactUsController;
+};
 
 // Run app
 $app->run();

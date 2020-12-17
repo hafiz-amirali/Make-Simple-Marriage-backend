@@ -36,6 +36,9 @@ return function (App $app) {
         $app->get('/allWithoutPagenation', 'CandidateController:getAllWithoutPagination');
         
     });
+    $app->group('/contactus', function ($app) {
+        $app->post('', 'ContactUsController:insertContactUS');        
+    });
 
     
     

@@ -123,7 +123,8 @@ return function (App $app) {
                     //"/noLogin",
                     //"/dashboard"
                     "/articles",
-                    "/candidates"
+                    "/candidates",
+                    "/contactus"
                 ]
             ]),
             new Tuupola\Middleware\JwtAuthentication\RequestMethodRule([
