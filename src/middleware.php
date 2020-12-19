@@ -109,8 +109,8 @@ return function (App $app) {
                 "path" => "/",
                 "ignore" => [
                     //login
-                    "/users/authenticate",
-                    "/users/logout",
+                    //"/users/authenticate",
+                    //"/users/logout",
                     ////for new service request without login
                     // "/customers/all",
                     // "/brands/all",
