@@ -28,6 +28,7 @@ return function (App $app) {
     $app->group('/articles', function ($app) {
         $app->get('', 'ArticleController:getAllArticles');
         $app->get('/allWithoutPagenation', 'ArticleController:getAllWithoutPagination');
+        $app->get('/recentPosts', 'ArticleController:recentPosts');
         
     });
 

@@ -25,4 +25,12 @@ class ArticleController
         $res = Article::where("status", "=", true)->get();
         return $response->withJson($res);
     }
+
+    public function recentPosts($request, $response)
+    {
+        $res = Article::orderBy('id', 'desc')->select('title')->take(5)->get();
+        //$res = Article::where("status", "=", true)->get();
+        return $response->withJson($res);
+    }
+    
 }
