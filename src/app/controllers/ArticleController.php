@@ -36,15 +36,10 @@ class ArticleController
     public function search($request, $response, $args)
     {
         if (!empty($args['search'])) {
-
             $res = Article::where('article', "like", "%" . $args["search"] . "%")->get();
             if ($res != null) {
                 return $response->withJson($res);
-            } else {
-                return Helper::error('Something Went Wrong.', 500, $response);
             }
-        } else {
-            return Helper::error('Something Went Wrong.', 500, $response);
         }
     }
     
