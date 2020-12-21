@@ -29,6 +29,7 @@ return function (App $app) {
         $app->get('', 'ArticleController:getAllArticles');
         $app->get('/allWithoutPagenation', 'ArticleController:getAllWithoutPagination');
         $app->get('/recentPosts', 'ArticleController:recentPosts');
+        $app->get('/{search}', 'ArticleController:search');
         
     });
 

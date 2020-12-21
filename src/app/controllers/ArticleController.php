@@ -29,8 +29,23 @@ class ArticleController
     public function recentPosts($request, $response)
     {
         $res = Article::orderBy('id', 'desc')->select('title')->take(5)->get();
-        //$res = Article::where("status", "=", true)->get();
         return $response->withJson($res);
+    }
+
+
+    public function search($request, $response, $args)
+    {
+        if (!empty($args['search'])) {
+
+            $res = Article::where('article', "like", "%" . $args["search"] . "%")->get();
+            if ($res != null) {
+                return $response->withJson($res);
+            } else {
+                return Helper::error('Something Went Wrong.', 500, $response);
+            }
+        } else {
+            return Helper::error('Something Went Wrong.', 500, $response);
+        }
     }
     
 }
