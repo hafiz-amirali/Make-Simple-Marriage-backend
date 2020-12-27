@@ -30,12 +30,15 @@ return function (App $app) {
         $app->get('/allWithoutPagenation', 'ArticleController:getAllWithoutPagination');
         $app->get('/recentPosts', 'ArticleController:recentPosts');
         $app->get('/{search}', 'ArticleController:search');
+        $app->post('/insertArticle', 'ArticleController:insertArticle');
         
     });
 
     $app->group('/candidates', function ($app) {
         $app->get('', 'CandidateController:getAllCandidates');
         $app->get('/allWithoutPagenation', 'CandidateController:getAllWithoutPagination');
+        $app->post('/search', 'CandidateController:search');
+        $app->post('/insertCandidate', 'CandidateController:insertCandidate');
         
     });
     $app->group('/contactus', function ($app) {

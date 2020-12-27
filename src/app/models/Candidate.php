@@ -17,7 +17,9 @@ class Candidate extends \Illuminate\Database\Eloquent\Model
         "gender",
         "address",
         "religion",
+        "sect",
         "city",
+        "age",
         "job_status",
         "income",
         "cast",
@@ -28,4 +30,9 @@ class Candidate extends \Illuminate\Database\Eloquent\Model
         "child_detail",
         "status"
     ];
+
+    public function qualification()
+    {
+        return $this->hasOne('App\Models\Qualification');
+    }
 }

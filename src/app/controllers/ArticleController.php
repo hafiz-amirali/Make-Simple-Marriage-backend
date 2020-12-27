@@ -5,6 +5,7 @@ namespace App\Controllers;
 use \Exception;
 use App\Models\Article;
 use App\utils\Helper;
+use App\Models\Enums\StatusCode;
 
 class ArticleController
 {
@@ -28,7 +29,8 @@ class ArticleController
 
     public function recentPosts($request, $response)
     {
-        $res = Article::orderBy('id', 'desc')->select('title')->take(5)->get();
+        //$res = Article::orderBy('id', 'desc')->select('title','slug')->take(5)->get();
+        $res = Article::orderBy('id', 'desc')->take(5)->get();
         return $response->withJson($res);
     }
 
@@ -41,6 +43,13 @@ class ArticleController
                 return $response->withJson($res);
             }
         }
+    }
+
+    public function insertArticle($request, $response)
+    {
+        $data = $request->getParsedBody();
+        $result = Article::create($data);
+        return $response->withJson(array('success' => true, 'statusCode' => StatusCode::ok, 'last_inserted_id' => $result->id));
     }
     
 }
