@@ -24,7 +24,14 @@ class CandidateController
 
     public function getAllWithoutPagination($request, $response)
     {
-        $res = Candidate::where("status", "=", true)->get();
+        $res = Candidate::where("status", "=", true)
+        ->leftJoin('qualification', 'candidates.qualification_id', '=', 'qualification.id')
+        ->select(
+            'candidates.*',
+            'qualification.*'
+        )
+        ->where("status", "=", true)
+        ->get();
         return $response->withJson($res);
     }
 
