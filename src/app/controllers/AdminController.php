@@ -15,7 +15,11 @@ class AdminController
         ->leftJoin('qualification', 'candidates.qualification_id', '=', 'qualification.id')
         ->select(
             'candidates.*',
-            'qualification.*'
+            'qualification.id as qualification.id',
+            "qualification.degree",
+            "qualification.year",
+            "qualification.board_name",
+            "qualification.institute_name"
         )
         ->get();
         return $response->withJson($res);
