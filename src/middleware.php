@@ -124,7 +124,8 @@ return function (App $app) {
                     //"/dashboard"
                     "/articles",
                     "/candidates",
-                    "/contactus"
+                    "/contactus",
+                    "/admin"
                 ]
             ]),
             new Tuupola\Middleware\JwtAuthentication\RequestMethodRule([

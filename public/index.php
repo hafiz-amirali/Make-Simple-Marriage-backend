@@ -62,6 +62,12 @@ $container['ContactUsController'] = function ($container) {
     return new \App\Controllers\ContactUsController;
 };
 
+$container['AdminController'] = function ($container) {
+    return new \App\Controllers\AdminController;
+};
+
+
+
 // Run app
 $app->run();
 

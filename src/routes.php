@@ -45,6 +45,15 @@ return function (App $app) {
         $app->post('', 'ContactUsController:insertContactUS');        
     });
 
+    $app->group('/login', function ($app) {
+        $app->get('', 'ContactUsController:login');        
+    });
+
+    $app->group('/admin', function ($app) {
+        $app->get('/unapprovedUsers', 'AdminController:unapprovedUsers');        
+    });
+
+
     
     
 };
