@@ -30,7 +30,6 @@ class CandidateController
             'candidates.*',
             'qualification.*'
         )
-        ->where("status", "=", true)
         ->get();
         return $response->withJson($res);
     }
