@@ -52,7 +52,8 @@ return function (App $app) {
     $app->group('/admin', function ($app) {
         $app->get('/unapprovedUsers', 'AdminController:unapprovedUsers');
         $app->get('/unapprovedPosts', 'AdminController:unapprovedPosts');
-        $app->post('/approveUser', 'AdminController:approveUser');    
+        $app->post('/approveUser', 'AdminController:approveUser');
+        $app->post('/approvePost', 'AdminController:approvePost');    
     });
 
 

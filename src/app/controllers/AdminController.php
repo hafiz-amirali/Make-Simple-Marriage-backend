@@ -53,5 +53,21 @@ class AdminController
         return $response->withJson($res);
     }
 
+    public function approvePost($request, $response)
+    {
+        $data = $request->getParsedBody();
+        if(!empty($data['id']) && !empty($data['status']) ){
+            $res = Article::where("id", "=", $data['id'])
+            ->update(['status' => $data['status']]);
+            if($res != false){
+                return $response->withJson($res);
+            }
+            return $response->withJson("Record not found");
+        }else{
+            return $response->withJson("Id are Status not found");
+        }
+        
+    }
+
     
 }
