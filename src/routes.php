@@ -53,7 +53,8 @@ return function (App $app) {
         $app->get('/unapprovedUsers', 'AdminController:unapprovedUsers');
         $app->get('/unapprovedPosts', 'AdminController:unapprovedPosts');
         $app->post('/approveUser', 'AdminController:approveUser');
-        $app->post('/approvePost', 'AdminController:approvePost');    
+        $app->post('/approvePost', 'AdminController:approvePost');
+        $app->post('/updatePost', 'AdminController:updatePost');    
     });
 
 

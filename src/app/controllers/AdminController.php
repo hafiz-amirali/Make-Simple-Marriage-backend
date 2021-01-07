@@ -69,5 +69,20 @@ class AdminController
         
     }
 
+    public function updatePost($request, $response)
+    {
+        $data = $request->getParsedBody();
+        if (!empty($data['id'])) {
+            $res = Article::find($data['id']);
+            if ($res != null) {
+                $result = $res->update($data);
+                return $response->withJson($result);
+            }
+            return $response->withJson("Article not found");
+        }else{
+            return $response->withJson("Id not found");
+        }
+        
+    }
     
 }
