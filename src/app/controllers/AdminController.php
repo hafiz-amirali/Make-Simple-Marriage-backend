@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use \Exception;
 use App\Models\Candidate;
+use App\Models\Article;
 use App\utils\Helper;
 use App\Models\Enums\StatusCode;
 
@@ -39,5 +40,18 @@ class AdminController
         }
         
     }
+
+    public function allPosts($request, $response)
+    {
+        $res = Article::where("status", "=", true)->get();
+        return $response->withJson($res);
+    }
+
+    public function unapprovedPosts($request, $response)
+    {
+        $res = Article::where("status", "=", false)->get();
+        return $response->withJson($res);
+    }
+
     
 }
