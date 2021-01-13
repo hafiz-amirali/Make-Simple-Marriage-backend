@@ -46,7 +46,7 @@ class AdminController
         
     }
 
-    public function allPosts($request, $response)
+    public function approvedPosts($request, $response)
     {
         $res = Article::where("status", "=", true)->get();
         return $response->withJson($res);

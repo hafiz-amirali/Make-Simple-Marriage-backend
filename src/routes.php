@@ -49,6 +49,7 @@ return function (App $app) {
     $app->group('/admin', function ($app) {
         $app->get('/unapprovedUsers', 'AdminController:unapprovedUsers');
         $app->get('/unapprovedPosts', 'AdminController:unapprovedPosts');
+        $app->get('/approvedPosts', 'AdminController:approvedPosts');
         $app->post('/approveUser', 'AdminController:approveUser');
         $app->post('/approvePost', 'AdminController:approvePost');
         $app->post('/updatePost', 'AdminController:updatePost');
@@ -59,7 +60,4 @@ return function (App $app) {
         $app->post('/authenticateUser', 'UserController:authenticateUser');
     });
 
-
-    
-    
 };
