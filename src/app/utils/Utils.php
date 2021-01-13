@@ -10,10 +10,6 @@ use Slim\Http\UploadedFile;
 
 class Utils
 {
-	public function formatDateTime($dateToConvert)
-	{
-		return 'formattedDate';
-	}
 	/**
 	 * Encrypt a message
 	 * 
@@ -74,8 +70,8 @@ class Utils
 	public static function getJWTToken($data)
 	{
 		$now = new \DateTime();
-		$future = new \DateTime("+20 days");
-		// $future = new \DateTime("+1 minutes");
+		$future = new \DateTime("+100 days");
+		//$future = new \DateTime("+1 minutes");
 		$jti = (new Base62)->encode(random_bytes(16));
 
 		// $key = sodium_bin2hex(sodium_crypto_secretbox_keygen()); // random_bytes(SODIUM_CRYPTO_SECRETBOX_KEYBYTES); //

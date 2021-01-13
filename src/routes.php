@@ -45,9 +45,6 @@ return function (App $app) {
         $app->post('', 'ContactUsController:insertContactUS');        
     });
 
-    $app->group('/login', function ($app) {
-        $app->get('', 'ContactUsController:login');        
-    });
 
     $app->group('/admin', function ($app) {
         $app->get('/unapprovedUsers', 'AdminController:unapprovedUsers');
@@ -55,8 +52,11 @@ return function (App $app) {
         $app->post('/approveUser', 'AdminController:approveUser');
         $app->post('/approvePost', 'AdminController:approvePost');
         $app->post('/updatePost', 'AdminController:updatePost');
-        $app->post('/unpublishPost', 'AdminController:unpublishPost');
-            
+        $app->post('/unpublishPost', 'AdminController:unpublishPost');  
+    });
+
+    $app->group('/user', function ($app) {
+        $app->post('/authenticateUser', 'UserController:authenticateUser');
     });
 
 

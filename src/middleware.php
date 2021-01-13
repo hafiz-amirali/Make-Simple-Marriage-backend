@@ -111,21 +111,15 @@ return function (App $app) {
                     //login
                     //"/users/authenticate",
                     //"/users/logout",
-                    ////for new service request without login
-                    // "/customers/all",
-                    // "/brands/all",
                     // "/customers/(\d*)/types/all",
                     // "/customers/types/pivot/(\d*)/problems/all",
-                    // "/equipment_types/all",
-                    // "/locations/filter",
-                    // "/service_request/serviceRequestLog",
                     //"/checkConnection",
                     //"/noLogin",
-                    //"/dashboard"
-                    "/articles",
-                    "/candidates",
-                    "/contactus",
-                    "/admin"
+                    "/user/authenticateUser",
+                    //"/articles",
+                    //"/candidates",
+                    //"/contactus",
+                    //"/admin"
                 ]
             ]),
             new Tuupola\Middleware\JwtAuthentication\RequestMethodRule([
