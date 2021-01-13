@@ -5,13 +5,17 @@ namespace App\Controllers;
 use \Exception;
 use App\Models\Candidate;
 use App\Models\Article;
+use App\Models\User;
 use App\utils\Helper;
+use App\Utils\Utils;
 use App\Models\Enums\StatusCode;
 
 class AdminController
 {
     public function unapprovedUsers($request, $response)
     {
+        $fields_to_remove = ['password', 'status'];
+
         $res = Candidate::where("status", "=", false)
         ->leftJoin('qualification', 'candidates.qualification_id', '=', 'qualification.id')
         ->select(
@@ -23,6 +27,7 @@ class AdminController
             "qualification.institute_name"
         )
         ->get();
+        $res->makeHidden($fields_to_remove);
         return $response->withJson($res);
     }
     public function approveUser($request, $response)
@@ -100,5 +105,4 @@ class AdminController
         }
         
     }
-    
 }

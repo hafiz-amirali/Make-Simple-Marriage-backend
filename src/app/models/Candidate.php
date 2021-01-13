@@ -23,6 +23,7 @@ class Candidate extends \Illuminate\Database\Eloquent\Model
         "job_status",
         "income",
         "cast",
+        "image",
         "mother_tongue",
         "nation_id",
         "qualification_id",

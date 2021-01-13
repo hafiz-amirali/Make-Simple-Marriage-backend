@@ -66,6 +66,10 @@ $container['AdminController'] = function ($container) {
     return new \App\Controllers\AdminController;
 };
 
+$container['UserController'] = function ($container) {
+    return new \App\Controllers\UserController;
+};
+
 
 
 // Run app

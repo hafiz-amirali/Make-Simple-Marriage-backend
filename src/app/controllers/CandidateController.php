@@ -10,12 +10,15 @@ use App\Models\Enums\StatusCode;
 
 class CandidateController
 {
+    
 
     public function getAllCandidates($request, $response)
     {
+        $fields_to_remove = ['password', 'status'];
         $page = (isset($_GET['page']) && $_GET['page'] > 0) ? $_GET['page'] : 1;
         $page_size = (isset($_GET['page_size']) && $_GET['page_size'] > 0) ? $_GET['page_size'] : Helper::defaultPageSize();
         $res = Candidate::where("status", "=", true);
+        $res->makeHidden($fields_to_remove);
         if (isset($_GET['sort_by']) && isset($_GET['is_desc'])) {
             $res = $res->orderBy($_GET['sort_by'], $_GET['is_desc']);
         }
@@ -24,6 +27,7 @@ class CandidateController
 
     public function getAllWithoutPagination($request, $response)
     {
+        $fields_to_remove = ['password', 'status'];
         $res = Candidate::where("status", "=", true)
         ->leftJoin('qualification', 'candidates.qualification_id', '=', 'qualification.id')
         ->select(
@@ -31,13 +35,14 @@ class CandidateController
             'qualification.*'
         )
         ->get();
+        $res->makeHidden($fields_to_remove);
         return $response->withJson($res);
     }
 
     
     public function search($request, $response)
     {
-
+        $fields_to_remove = ['password', 'status'];
         $data = $request->getParsedBody();
 
         $city  = filter_var($data['city'], FILTER_SANITIZE_STRING);
@@ -60,8 +65,10 @@ class CandidateController
                 ['age', "like", "%" . $age . "%"],
                 ['degree', "like", "%" . $education . "%"]
                 ])->get();
+
+            $res->makeHidden($fields_to_remove);
                
-             return $response->withJson($res);
+            return $response->withJson($res);
                 
         }
 
@@ -79,6 +86,7 @@ class CandidateController
                 ['age', "like", "%" . $age . "%"],
                 ['degree', "like", "%" . $education . "%"]
                 ])->get();
+            $res->makeHidden($fields_to_remove);
                
              return $response->withJson($res);
         }
@@ -95,7 +103,7 @@ class CandidateController
                 ['age', "like", "%" . $age . "%"],
                 ['degree', "like", "%" . $education . "%"]
                 ])->get();
-               
+            $res->makeHidden($fields_to_remove);
              return $response->withJson($res);
         }
 
@@ -111,7 +119,7 @@ class CandidateController
                 ['sect', "like", "%" . $sect . "%"],
                 ['degree', "like", "%" . $education . "%"]
                 ])->get();
-               
+                $res->makeHidden($fields_to_remove);
              return $response->withJson($res);
         }
 
@@ -127,6 +135,8 @@ class CandidateController
                 ['sect', "like", "%" . $sect . "%"],
                 ['age', "like", "%" . $age . "%"]
                 ])->get();
+
+            $res->makeHidden($fields_to_remove);
                
              return $response->withJson($res);
         }
@@ -143,7 +153,7 @@ class CandidateController
                 ['age', "like", "%" . $age . "%"],
                 ['degree', "like", "%" . $education . "%"]
                 ])->get();
-               
+                $res->makeHidden($fields_to_remove);
              return $response->withJson($res);
         }
 
@@ -158,7 +168,7 @@ class CandidateController
                 ['sect', "like", "%" . $sect . "%"],
                 ['age', "like", "%" . $age . "%"]
                 ])->get();
-               
+                $res->makeHidden($fields_to_remove);
              return $response->withJson($res);
         }
 
@@ -173,7 +183,7 @@ class CandidateController
                 ['age', "like", "%" . $age . "%"],
                 ['degree', "like", "%" . $education . "%"]
                 ])->get();
-               
+                $res->makeHidden($fields_to_remove);
              return $response->withJson($res);
         }
         if($city !== '' && $sect !== '' && $education !== ''){
@@ -187,7 +197,7 @@ class CandidateController
                 ['sect', "like", "%" . $sect . "%"],
                 ['degree', "like", "%" . $education . "%"]
                 ])->get();
-               
+                $res->makeHidden($fields_to_remove);
              return $response->withJson($res);
         }
 
@@ -202,7 +212,7 @@ class CandidateController
                 ['cast', "like", "%" . $cast . "%"],
                 ['degree', "like", "%" . $education . "%"]
                 ])->get();
-               
+                $res->makeHidden($fields_to_remove);
              return $response->withJson($res);
         }
 
@@ -217,7 +227,7 @@ class CandidateController
                 ['cast', "like", "%" . $cast . "%"],
                 ['age', "like", "%" . $age . "%"]
                 ])->get();
-               
+                $res->makeHidden($fields_to_remove);
              return $response->withJson($res);
         }
 
@@ -232,7 +242,7 @@ class CandidateController
                 ['cast', "like", "%" . $cast . "%"],
                 ['sect', "like", "%" . $sect . "%"]
                 ])->get();
-               
+                $res->makeHidden($fields_to_remove);
              return $response->withJson($res);
         }
         
@@ -247,7 +257,7 @@ class CandidateController
                 ['age', "like", "%" . $age . "%"],
                 ['degree', "like", "%" . $education . "%"]
                 ])->get();
-               
+                $res->makeHidden($fields_to_remove);
              return $response->withJson($res);
         }
 
@@ -262,7 +272,7 @@ class CandidateController
                 ['sect', "like", "%" . $sect . "%"],
                 ['age', "like", "%" . $age . "%"]
                 ])->get();
-               
+                $res->makeHidden($fields_to_remove);
              return $response->withJson($res);
         }
         
@@ -277,7 +287,7 @@ class CandidateController
                 ['sect', "like", "%" . $sect . "%"],
                 ['degree', "like", "%" . $education . "%"]
                 ])->get();
-               
+                $res->makeHidden($fields_to_remove);
              return $response->withJson($res);
         }
 
@@ -292,7 +302,7 @@ class CandidateController
                 ['age', "like", "%" . $age . "%"],
                 ['degree', "like", "%" . $education . "%"]
                 ])->get();
-               
+                $res->makeHidden($fields_to_remove);
              return $response->withJson($res);
         }
         
@@ -306,7 +316,7 @@ class CandidateController
                 ['city', "like", "%" . $city . "%"],
                 ['cast', "like", "%" . $cast . "%"]
                 ])->get();
-               
+                $res->makeHidden($fields_to_remove);
              return $response->withJson($res);
         }
 
@@ -320,7 +330,7 @@ class CandidateController
                 ['city', "like", "%" . $city . "%"],
                 ['sect', "like", "%" . $sect . "%"]
                 ])->get();
-               
+                $res->makeHidden($fields_to_remove);
              return $response->withJson($res);
         }
 
@@ -334,7 +344,7 @@ class CandidateController
                 ['city', "like", "%" . $city . "%"],
                 ['age', "like", "%" . $age . "%"]
                 ])->get();
-               
+                $res->makeHidden($fields_to_remove);
              return $response->withJson($res);
         }
 
@@ -348,7 +358,7 @@ class CandidateController
                 ['city', "like", "%" . $city . "%"],
                 ['degree', "like", "%" . $education . "%"]
                 ])->get();
-               
+                $res->makeHidden($fields_to_remove);
              return $response->withJson($res);
         }
 
@@ -362,7 +372,7 @@ class CandidateController
                 ['cast', "like", "%" . $cast . "%"],
                 ['sect', "like", "%" . $sect . "%"]
                 ])->get();
-               
+                $res->makeHidden($fields_to_remove);
              return $response->withJson($res);
         }
 
@@ -376,7 +386,7 @@ class CandidateController
                 ['cast', "like", "%" . $cast . "%"],
                 ['age', "like", "%" . $age . "%"]
                 ])->get();
-               
+                $res->makeHidden($fields_to_remove);
              return $response->withJson($res);
         }
 
@@ -390,7 +400,7 @@ class CandidateController
                 ['cast', "like", "%" . $cast . "%"],
                 ['degree', "like", "%" . $education . "%"]
                 ])->get();
-               
+                $res->makeHidden($fields_to_remove);
              return $response->withJson($res);
         }
 
@@ -404,7 +414,7 @@ class CandidateController
                 ['sect', "like", "%" . $sect . "%"],
                 ['age', "like", "%" . $age . "%"]
                 ])->get();
-               
+                $res->makeHidden($fields_to_remove);
              return $response->withJson($res);
         }
 
@@ -418,7 +428,7 @@ class CandidateController
                 ['sect', "like", "%" . $sect . "%"],
                 ['degree', "like", "%" . $education . "%"]
                 ])->get();
-               
+                $res->makeHidden($fields_to_remove);
              return $response->withJson($res);
         }
 
@@ -432,7 +442,7 @@ class CandidateController
                 ['age', "like", "%" . $age . "%"],
                 ['degree', "like", "%" . $education . "%"]
                 ])->get();
-               
+                $res->makeHidden($fields_to_remove);
              return $response->withJson($res);
         }
 
@@ -443,7 +453,7 @@ class CandidateController
                 'qualification.*'
             )
             ->where('city', "like", "%" . $city . "%")->get();
-               
+            $res->makeHidden($fields_to_remove);
              return $response->withJson($res);
         }
 
@@ -454,7 +464,7 @@ class CandidateController
                 'qualification.*'
             )
             ->where('cast', "like", "%" . $cast . "%")->get();
-               
+            $res->makeHidden($fields_to_remove);
              return $response->withJson($res);
         }
 
@@ -465,7 +475,7 @@ class CandidateController
                 'qualification.*'
             )
             ->where('sect', "like", "%" . $cast . "%")->get();
-               
+            $res->makeHidden($fields_to_remove);
              return $response->withJson($res);
         }
 
@@ -476,7 +486,7 @@ class CandidateController
                 'qualification.*'
             )
             ->where('age', "like", "%" . $cast . "%")->get();
-               
+            $res->makeHidden($fields_to_remove);
              return $response->withJson($res);
         }
 
@@ -487,7 +497,7 @@ class CandidateController
                 'qualification.*'
             )
             ->where('degree', "like", "%" . $cast . "%")->get();
-               
+            $res->makeHidden($fields_to_remove);
              return $response->withJson($res);
         }
 
